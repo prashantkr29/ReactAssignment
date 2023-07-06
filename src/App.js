@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
+import Cards from './Components/Cards'
+
 
 function App() {
+  const [categories,setcategories] = useState([]);
+  let url = "https://api.chucknorris.io/jokes/categories"
+  fetch(url)
+  .then(response=>response.json())
+  .then(data=>{
+    setcategories(data);
+  })
+  .catch(err=>{
+    console.log(err);
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="Home">
+        <div className="header">
+          <h1 className='hedaing'>Chuck Norris</h1>
+        </div>
+       {categories.map((category)=>{
+        return <div className= 'col-md-4' key={category}>
+          <Cards type={category}/>
+        </div>
+       })}
+      </div>
+    </>
   );
 }
 
