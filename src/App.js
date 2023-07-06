@@ -19,13 +19,15 @@ function App() {
     <>
       <div className="Home">
         <div className="header">
-          <h1 className='hedaing'>Chuck Norris</h1>
+          <h1 className='hedaing'>Chuck Norries</h1>
         </div>
+        <div className="row">
        {categories.map((category)=>{
-        return <div className= 'col-md-4' key={category}>
+        return <div className="col-md-3" key={category}>
           <Cards type={category}/>
         </div>
        })}
+       </div>
       </div>
     </>
   );
